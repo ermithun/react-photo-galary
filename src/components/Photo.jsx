@@ -9,22 +9,30 @@ export const Photo = () => {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-   
+  };
+
+  const handleSearch=()=>{
     axios.get(`${config.baseUrl}&query=${searchInput}`).then((res)=>{
       setPhotoData(res.data.results)
      });
-  };
+  }
   return (
     <div id='team' className='text-center'>
       <div className='container'>
+        
         <div className='col-md-8 col-md-offset-2 section-title'>
           <h2>Photo Galary</h2>
-          <input type="search"
+          
+            <input type="search"
               placeholder="Search here"
               onChange={handleChange}
               className="form-control"
               value={searchInput}/>
-
+              <button class="btn btn-secondary" type="button" onClick={handleSearch}>
+        <i class="fa fa-search"></i>
+      </button>
+      
+ 
         </div>
         <div id='row'>
           {photoData
